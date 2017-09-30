@@ -14,10 +14,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
 
-
                 <li>
                     {{link_to_route(
-                          'anagraficaClienti.index',
+                          'anagrafica-clienti.index',
                           'Anagrafica Clienti',
                           ['data' => '1234'],
                           ['id' => 'lnkHomeAnagrafica', 'title' => 'Gestione anagrafica clienti','class' => 'superClass']
@@ -28,4 +27,5 @@
 
             </ul>
         </div><!--/.nav-collapse -->
-    </div
+    </div>
+</nav>

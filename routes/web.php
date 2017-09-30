@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'anagrafica-clienti'], function() {
 
 
-	Route::get('/', 'AnagraficaClienteController@index')->name('anagraficaClienti.index');
+	Route::get('/', 'AnagraficaClienteController@index')->name('anagrafica-clienti.index');
 	Route::get('/create', 'AnagraficaClienteController@create')->name('anagrafica-clienti.create');
 	Route::post('/store', 'AnagraficaClienteController@store')->name('anagrafica-clienti.store');
 	Route::get('/show/{id}', 'AnagraficaClienteController@show')->name('anagrafica-clienti.show')->where('id', '[0-9]+');

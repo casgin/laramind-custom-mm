@@ -16,7 +16,8 @@ class AnagraficaClienteController extends Controller
 
 		$data = $mdlCliente::where($arWhere)->orderBy('id','desc')->get();
 
-		return view('anagrafica-cliente.index');
+		return view('anagrafica-cliente.index')
+					->with(['elencoAnagrafica' => $data]);
 
 	}
 

@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Sat, 30 Sep 2017 13:16:35 +0000.
+ * Date: Sun, 01 Oct 2017 09:02:16 +0000.
  */
 
 namespace App\Models;
@@ -16,6 +16,7 @@ use Reliese\Database\Eloquent\Model as Eloquent;
  * @property string $nome
  * @property string $cognome
  * @property string $email
+ * @property string $telefono
  * @property string $logo
  * @property \Carbon\Carbon $data_contatto
  * @property \Carbon\Carbon $created_at
@@ -39,6 +40,7 @@ class AnagraficaCliente extends Eloquent
 		'nome',
 		'cognome',
 		'email',
+		'telefono',
 		'logo',
 		'data_contatto'
 	];

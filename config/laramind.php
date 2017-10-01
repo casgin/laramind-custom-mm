@@ -2,4 +2,5 @@
 
 return [
 	'logoFolder' => 'logo',
+	'uploadFolder'  => 'caricati',
 ];

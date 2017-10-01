@@ -1,9 +1,27 @@
 @extends('layouts.main-layout')
 
+@push('head-scripts')
+    <style>
+        .btnModifica::before
+        {
+            font-family: "Glyphicons Halflings";
+            margin-right: 10px;
+            content: "\e021";
+        }
+    </style>
 
+@endpush
 
 @section('pageContent')
     <h1>Elenco Anagrafica</h1>
+
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
 
     {{link_to_route(
       'anagrafica-clienti.create',
@@ -30,7 +48,11 @@
             <td>{{$cliente->id}}</td>
             <td>{{$cliente->nome}}</td>
             <td>{{$cliente->cognome}}</td>
-            <td>Action</td>
+            <td>
+                {{--  --}}
+                @include('includes.anagrafica-link-visualizza', ['id' => $cliente->id])
+                @include('includes.anagrafica-link-modifica', ['id' => $cliente->id])
+            </td>
         </tr>
         @endforeach
         </tbody>

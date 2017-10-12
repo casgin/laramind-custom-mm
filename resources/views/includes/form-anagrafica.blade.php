@@ -154,6 +154,12 @@
                 'id'=>'fldLogo',
                 'class' => 'btn btn-primary']);
         !!}
+
+        @if($anagrafica['logo'])
+            <br/>
+
+
+        @endif
     </div>
 
     <div class="col-sm-4">

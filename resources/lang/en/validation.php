@@ -100,9 +100,13 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+
+    	// --- nome del campo
+	    'allegati' => [
+
+	    	// --- elenco dei ruoli di validazione
+		    'required' => 'Necessario inserire gli allegati',
+	    ],
     ],
 
     /*

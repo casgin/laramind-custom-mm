@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Framework\Constraint\RegularExpression;
 
 class AnagraficaClienteController extends Controller
@@ -89,12 +90,71 @@ class AnagraficaClienteController extends Controller
 
 		$data = $mdl::find($id)->toArray();
 
+		\Debugbar::info($data['logo']);
+		// \Debugbar::info(Storage::get(config('uploadFolder').DIRECTORY_SEPARATOR.$data['logo']));
+
 		// --- Mostro la maschera
 		return view('anagrafica-cliente.edit')
-				->with(['anagrafica' => $data]);
+				->with([
+					'anagrafica' => $data,
+					'logoEncoded'      => Storage::get(config('uploadFolder').DIRECTORY_SEPARATOR.$data['logo']),
+				]);
 
 	}
-	public function updateApply() {}
+	public function updateApply(Request $request, $id) {
+
+		// === Vado a validare i dati del
+		$this->validate($request,[
+			'nome'  => 'required|max:255',
+			'cognome'  => 'required|max:255',
+			'email'  => 'required|unique:anagrafica_cliente,email|max:200',
+			'logo'  => 'max:50000|mimetypes:image/jpeg,image/png'
+		]);
+
+		$mdl = new \App\Models\AnagraficaCliente();
+		$anagraficaObj = $mdl::find($id);
+
+		if(!$anagraficaObj)
+		{
+			// --- redirecrt con messaggio di errore flash
+		}
+
+
+
+		$input = [
+			'nome'  => $request->get('nome'),
+			'cognome'  => $request->get('cognome'),
+			'email'  => $request->get('email'),
+			'telefono'  => $request->get('telefono'),
+			'data_contatto'  => $request->get('data_contatto'),
+		];
+
+		if($request->hasFile('logo'))
+		{
+			// === Faccio il caricamento del file
+			// === Devo effettuare lo stroage del file
+			$fileExstension = $request->file('logo')->extension();
+			$fileName = md5(sha1($request->file('logo')->getClientOriginalName()).time().'KKPOAI')
+			            .'.'
+			            .$fileExstension; // estensione del file
+
+			$request->file('logo')->storeAs(
+				config('laramind.uploadFolder'),
+				$fileName
+			);
+
+		}
+
+		$input['logo'] = $fileName;
+
+		$anagraficaObj->update($input);
+		$anagraficaObj->save();
+
+		// === altro redirect con messaggio flash
+
+	}
+
+
 	public function delete() {}
 
 	/**
@@ -136,5 +196,10 @@ class AnagraficaClienteController extends Controller
 	}
 
 
+
+	public function mascheraJavascript()
+	{
+		return view('anagrafica-cliente.maschera-javascript');
+	}
 
 }

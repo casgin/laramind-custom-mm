@@ -2,6 +2,8 @@
 
 @section('pageContent')
 
+
+
     {{-- Andiamo a creare il form con Laravel Collective --}}
 
 

@@ -10,6 +10,9 @@
     <!-- Bootbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
+
+    <!--  -->
+    <link rel="stylesheet" href="/css/spefic-custom-classes.css" />
 @endpush
 
 
@@ -69,6 +72,7 @@
     <h1>Dettaglio Record</h1>
 
     <div id="detailContent"></div>
+
     @include('x-template.x-anagrafica-dettaglio')
 
 

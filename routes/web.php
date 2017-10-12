@@ -30,3 +30,17 @@ Route::group(['prefix' => 'anagrafica-clienti'], function() {
 
 
 });
+
+
+// === Esempio di creazione di una maschera JS Based
+Route::get('/maschera-javascript', 'AnagraficaClienteController@mascheraJavascript')->name('maschera.home');
+
+
+
+Route::post('/test-middleware', function (){
+	return "eseguito";
+})->middleware('verify-custom');
+
+Route::get('/test-middleware', function (){
+	return "eseguito";
+})->middleware('verify-custom');
